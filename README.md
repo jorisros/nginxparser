@@ -5,7 +5,7 @@ Create Nginx config files from php
 
 Example to use
 
-'''
+```php
 <?php
 
 use jorisros\nginxparser\NginxParser;
@@ -37,4 +37,4 @@ if($config->validate())
     foreach ($config->getValidatorErrors() as $error) {
         # code...
     }
-}'''
+}```
