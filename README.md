@@ -45,10 +45,10 @@ server {
 	server_alias		local serveralias;
 	access_log		/var/log/nginx/log/host.access.log;
 
-location / {
-	root		/usr/share/nginx/html;
-	index		index.html index.htm;
-}
+	location / {
+		root		/usr/share/nginx/html;
+		index		index.html index.htm;
+	}
 
 }
 ```
