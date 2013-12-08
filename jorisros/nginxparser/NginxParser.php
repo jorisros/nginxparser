@@ -8,7 +8,6 @@
 
 namespace jorisros\nginxparser;
 
-require_once 'NginxLocation.php';
 require_once 'NginxElement.php';
 
 
@@ -93,7 +92,26 @@ class NginxParser {
     {
         if(substr($method, 0, 3 ) === 'get')
         {
+            $arrChar = array();
+            for($i=3; $i<strlen($method); $i++)
+            {
+                if($i === 3)
+                {
+                    $method{$i} = strtolower($method{$i});
+                }
+                if(ctype_upper($method{$i}))
+                {
+                    $arrChar[] = '_';
+                    $arrChar[] = strtolower($method{$i});
+                }else{
+                    $arrChar[] = $method{$i};
+                }
 
+            }
+
+            $method_name = implode('',$arrChar);
+
+            return $this->arrValues[$method_name];
         }
 
         if(substr($method, 0, 3 ) === 'set')
