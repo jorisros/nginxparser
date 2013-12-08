@@ -5,7 +5,7 @@ Create Nginx config files from php
 
 Example
 -------
-Example to use the class
+Example to use the class as simple config file
 
 ```php
 <?php
