@@ -20,9 +20,15 @@ class NginxParser {
      */
     protected $arrValues = array();
 
+    protected $identity = '';
 
-    public function __construct()
+    protected $regex = null;
+
+    public function __construct($identity, $regex = null)
     {
+        $this->identity = $identity;
+        $this->regex = $regex;
+
         return $this;
     }
 
@@ -40,17 +46,28 @@ class NginxParser {
      */
     public function build()
     {
-        $file = "\nserver {\n";
+        $file = "\n".$this->identity;
+
+        if($this->regex)
+        {
+            $file .= " ".$this->regex;
+        }
+        $file .= " {\n";
 
         foreach($this->arrValues as $method=>$value)
         {
-            if(is_array($value))
+            switch($value)
             {
-
-            }else{
-                $file .= "\t".$method."\t\t".$value.";\n";
+                case is_object($value):
+                    $file .= "\t".$value."\n";
+                break;
+                case is_array($value):
+                    $file .= "\t".$method."\t\t".implode(' ',$value).";\n";
+                break;
+                default:
+                    $file .= "\t".$method."\t\t".$value.";\n";
+                break;
             }
-
         }
         $file .= "}\n";
 
