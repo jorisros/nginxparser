@@ -15,62 +15,14 @@ require_once 'NginxElement.php';
 class NginxParser {
 
     /**
-     * Default value for the port
-     * @var int
+     * Contains the values
+     * @var array
      */
-    protected $port = 80;
-
-    /**
-     * @var string
-     */
-    protected $server_name = '';
-
-    /**
-     * @var NginxLocation
-     */
-    protected $location = null;
+    protected $arrValues = array();
 
 
     public function __construct()
     {
-        return $this;
-    }
-
-    /**
-     *
-     * @param NginxElement $integer
-     * @return $this
-     */
-    public function setPort($integer)
-    {
-        $this->port = $integer;
-        return $this;
-    }
-
-    /**
-     *
-     * @param NginxElement $hostname
-     * @return $this
-     */
-    public function setServerName($hostname)
-    {
-        $this->server_name = $hostname;
-        return $this;
-    }
-
-    public function setServerAlias($array = array())
-    {
-        return $this;
-    }
-
-    public function setAccessLog($file)
-    {
-        return $this;
-    }
-
-    public function setLocation(NginxLocation $location)
-    {
-        $this->location = $location;
         return $this;
     }
 
@@ -89,11 +41,16 @@ class NginxParser {
     public function build()
     {
         $file = "\nserver {\n";
-        $file .= "\tlisten\t\t".$this->port.";\n";
-        $file .= "\tserver_name\t".$this->server_name.";\n";
-        if($this->location)
+
+        foreach($this->arrValues as $method=>$value)
         {
-            $file .= $this->location;
+            if(is_array($value))
+            {
+
+            }else{
+                $file .= "\t".$method."\t\t".$value.";\n";
+            }
+
         }
         $file .= "}\n";
 
@@ -113,6 +70,39 @@ class NginxParser {
     public function __toString()
     {
         return $this->build();
+    }
+
+    public function __call($method, $value)
+    {
+        if(substr($method, 0, 3 ) === 'get')
+        {
+
+        }
+
+        if(substr($method, 0, 3 ) === 'set')
+        {
+            $arrChar = array();
+            for($i=3; $i<strlen($method); $i++)
+            {
+                if($i === 3)
+                {
+                    $method{$i} = strtolower($method{$i});
+                }
+                if(ctype_upper($method{$i}))
+                {
+                    $arrChar[] = '_';
+                    $arrChar[] = strtolower($method{$i});
+                }else{
+                    $arrChar[] = $method{$i};
+                }
+
+            }
+            $method_name = implode('',$arrChar);
+
+            $this->arrValues[$method_name] = reset($value);
+        }
+
+        return $this;
     }
 
 }
