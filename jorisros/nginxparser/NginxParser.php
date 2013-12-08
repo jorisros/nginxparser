@@ -23,6 +23,8 @@ class NginxParser {
 
     protected $regex = null;
 
+    protected $parent = null;
+
     public function __construct($identity, $regex = null)
     {
         $this->identity = $identity;
@@ -40,12 +42,27 @@ class NginxParser {
     }
 
     /**
+     * @param $obj
+     */
+    protected function setParent($obj)
+    {
+        $this->parent = $obj;
+    }
+
+    /**
      *
      * @return string
      */
     public function build()
     {
-        $file = "\n".$this->identity;
+        $first = null;
+
+        if(is_object($this->parent))
+        {
+            $first = "\t";
+        }
+
+        $file = "\n".$first.$this->identity;
 
         if($this->regex)
         {
@@ -58,17 +75,18 @@ class NginxParser {
             switch($value)
             {
                 case is_object($value):
-                    $file .= "\t".$value."\n";
+                    $value->setParent($this);
+                    $file .= $first."\t".$value."\n";
                 break;
                 case is_array($value):
-                    $file .= "\t".$method."\t\t".implode(' ',$value).";\n";
+                    $file .= $first."\t".$method."\t\t".implode(' ',$value).";\n";
                 break;
                 default:
-                    $file .= "\t".$method."\t\t".$value.";\n";
+                    $file .= $first."\t".$method."\t\t".$value.";\n";
                 break;
             }
         }
-        $file .= "}\n";
+        $file .= $first."}\n";
 
 
         return $file;
