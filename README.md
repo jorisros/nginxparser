@@ -12,13 +12,12 @@ Example to use the class as simple config file
 
 use jorisros\nginxparser\NginxParser;
 use jorisros\nginxparser\NginxElement;
-use jorisros\nginxparser\NginxLocation;
 
 require_once 'jorisros/nginxparser/NginxParser.php';
 
-$config = new NginxParser();
+$config = new NginxParser('server');
 
-$location = new NginxLocation('/');
+$location = new NginxParser('location','/');
 $location->setRoot('/usr/share/nginx/html')
          ->setIndex(array('index.html', 'index.htm'));
 
@@ -27,9 +26,6 @@ $config ->setPort(80)
         ->setServerAlias(array('local','serveralias'))
         ->setAccessLog('/var/log/nginx/log/host.access.log')
         ->setLocation($location);
-
-print($config);
-
 
 if($config->validate())
 {
