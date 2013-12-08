@@ -3,7 +3,9 @@ nginxparser
 
 Create Nginx config files from php
 
-Example to use
+Example
+-------
+Example to use the class
 
 ```php
 <?php
@@ -37,4 +39,5 @@ if($config->validate())
     foreach ($config->getValidatorErrors() as $error) {
         # code...
     }
-}```
+}
+```
