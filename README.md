@@ -4,7 +4,7 @@ nginxparser
 Create Nginx config files from php
 Requirements
 ------------
-* PHP 5.3
+* PHP >= 5.3
 * Nginx installed (for the validate function)
 
 Example
