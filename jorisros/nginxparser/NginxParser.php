@@ -25,7 +25,7 @@ class NginxParser {
 
     protected $parent = null;
 
-    public function __construct($identity, $regex = null)
+    public function __construct($identity = null, $regex = null)
     {
         $this->identity = $identity;
         $this->regex = $regex;
@@ -33,6 +33,14 @@ class NginxParser {
         return $this;
     }
 
+    public function readFromFile($path)
+    {
+        $file = file_get_contents($path);
+        preg_match_all("/{.*?}/",$file,$matches);
+
+        var_dump($matches);
+        print($file);
+    }
     /**
      * @return bool
      */
