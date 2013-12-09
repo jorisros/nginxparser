@@ -26,8 +26,7 @@ $location->setRoot('/usr/share/nginx/html')
          ->setIndex(array('index.html', 'index.htm'));
 
 $config ->setPort(80)
-        ->setServerName('localhost')
-        ->setServerAlias(array('local','serveralias'))
+        ->setServerName(array('localhost','local','serveralias'))
         ->setAccessLog('/var/log/nginx/log/host.access.log')
         ->setLocation($location);
 
