@@ -36,10 +36,41 @@ class NginxParser {
     public function readFromFile($path)
     {
         $file = file_get_contents($path);
-        preg_match_all("/{.*?}/",$file,$matches);
+        //preg_match_all("/{.*?}/",$file,$matches);
+        $lines = explode("\n",$file);
 
-        var_dump($matches);
-        print($file);
+
+        $objects = array();
+$l = 0;
+        foreach($lines as $line)
+        {
+            $word = array();
+
+            $lastChar = 0;
+            for($i=0; $i<strlen($line); $i++)
+            {
+
+                switch($line{$i})
+                {
+                    case ' ':
+                        $word[$l] = strpos($line, $lastChar, $i);
+                        $lastChar = $i;
+                        $space = true;
+                    break;
+                    case '{':
+                        $begin_method = true;
+                    break;
+                    case '}':
+                        $end_method = true;
+                    break;
+                }
+
+            }
+            var_dump($word);
+            $l++;
+        }
+        //var_dump($matches);
+        //print($file);
     }
     /**
      * @return bool
