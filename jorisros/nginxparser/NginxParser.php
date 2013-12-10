@@ -13,18 +13,24 @@ require_once 'NginxElement.php';
 
 class NginxParser {
 
-    /**
-     * Contains the values
-     * @var array
-     */
+    /** @var array Contains the values of the section */
     protected $arrValues = array();
 
+    /** @var null|string name of the section */
     protected $identity = '';
 
+    /** @var null regular expression of the section */
     protected $regex = null;
 
+    /** @var null The depth of a object */
     protected $parent = null;
 
+    /**
+     * Constructor of the parser
+     *
+     * @param null $identity
+     * @param null $regex
+     */
     public function __construct($identity = null, $regex = null)
     {
         $this->identity = $identity;
@@ -33,6 +39,12 @@ class NginxParser {
         return $this;
     }
 
+    /**
+     * Read a file and returns the config objects
+     *
+     * @param $path
+     * @return array
+     */
     public function readFromFile($path)
     {
         $file = file_get_contents($path);
@@ -167,15 +179,21 @@ $l = 0;
         return $objects;
         //print($file);
     }
+
     /**
+     * Check if the config file is correct
+     *
      * @return bool
      */
     public function validate()
     {
+        //@TODO build validation functionality
         return false;
     }
 
     /**
+     * Set a parent object
+     *
      * @param $obj
      */
     protected function setParent($obj)
@@ -184,6 +202,7 @@ $l = 0;
     }
 
     /**
+     * Parse the object to a string
      *
      * @return string
      */
@@ -227,19 +246,33 @@ $l = 0;
     }
 
     /**
+     * Returns the errors of the validate
      *
      * @return array
      */
     public function getValidatorErrors()
     {
+        //@TODO build the error functionality
         return array();
     }
 
+    /**
+     * Returns the parsed object
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->build();
     }
 
+    /**
+     * Magic function for dynamicly generating getters and setters
+     *
+     * @param $method
+     * @param $value
+     * @return $this
+     */
     public function __call($method, $value)
     {
         if(substr($method, 0, 3 ) === 'get')
