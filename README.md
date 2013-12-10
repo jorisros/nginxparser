@@ -1,15 +1,17 @@
-nginxparser
+NginxParser
 ===========
 
-Create Nginx config files from php
+Read and create Nginx config files in php
 Requirements
 ------------
 * PHP >= 5.3
 * Nginx installed (for the validate function)
 
-Example
--------
-Example to use the class as simple config file
+Examples
+--------
+Examples to use the class
+
+Simple config file
 
 ```php
 <?php
@@ -54,4 +56,24 @@ server {
 	}
 
 }
+```
+Read existing config file
+```
+<?php
+
+use jorisros\nginxparser\NginxParser;
+use jorisros\nginxparser\NginxElement;
+
+require_once 'jorisros/nginxparser/NginxParser.php';
+
+$d = new NginxParser();
+$objects = $d->readFromFile('Resources/nginx-config/nginx.conf');
+
+//var_dump($objects);
+
+foreach($objects as $object)
+{
+    print($object->build());
+}
+
 ```
