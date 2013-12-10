@@ -4,5 +4,4 @@ php:
   - 5.4
   - 5.3
 before_script:
-  - php-cgi --version
   - sudo apt-get -qq install nginx
