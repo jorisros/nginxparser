@@ -38,22 +38,26 @@ class NginxParser {
         $file = file_get_contents($path);
         //preg_match_all("/{.*?}/",$file,$matches);
         $lines = explode("\n",$file);
-
+        $space = false;
+        $begin_method = false;
+        $end_method = false;
 
         $objects = array();
+        $objectCounter = 0;
 $l = 0;
         foreach($lines as $line)
         {
-            $word = array();
+            $str = '';
+            $words = array();
 
             $lastChar = 0;
             for($i=0; $i<strlen($line); $i++)
             {
-
+                //var_dump($line{$i});
                 switch($line{$i})
                 {
                     case ' ':
-                        $word[$l] = strpos($line, $lastChar, $i);
+                        //$word[$l] = strpos($line, $lastChar, $i);
                         $lastChar = $i;
                         $space = true;
                     break;
@@ -63,13 +67,104 @@ $l = 0;
                     case '}':
                         $end_method = true;
                     break;
+                    case ';':
+                    break;
+                    default:
+                        $str .= $line{$i};
+                    break;
+                }
+                if($space)
+                {
+                    if(strlen($str) >0 )
+                    {
+                    $words[] = $str;
+                       // var_dump($str);
+                    $str = '';
+                    }
+                    $space = false;
+                }
+                if($begin_method)
+                {
+                    $objects[$objectCounter] = new NginxParser($words[0]);
+                    $words = array();
+                    //var_dump($words);
+                    $begin_method = false;
+                }
+
+                if($end_method)
+                {
+                    $objectCounter++;
+                    $end_method = false;
+                }
+            }
+            if(isset($objects[$objectCounter]) && is_object($objects[$objectCounter]))
+            {
+                $command = '';
+               // var_dump('line');
+                if(count($words)>=1)
+                {
+                    $command = reset($words);
+                    //var_dump($line);
+                    $endPosWord = strpos($line, $command)+strlen($command);
+                    $value = substr($line, $endPosWord, strlen($line));
+                    $arrValue = explode(' ', str_replace(';','',$value));
+                    $returnArray = array();
+                    foreach($arrValue as $strVal)
+                    {
+                        if($strVal != '')
+                        {
+                            $returnArray[] = $strVal;
+                        }
+                    }
+
+                    $arrChar = array();
+                    $upper = false;
+                    $method = $command;
+                    for($i=0; $i<strlen($method); $i++)
+                    {
+                        if($i === 0)
+                        {
+                            $method{$i} = strtoupper($method{$i});
+                        }
+                        if($method{$i} === '_')
+                        {
+                           // $i++;
+                            $upper = true;
+                            //$arrChar[] = strtoupper($method{$i});
+                        }else{
+                            if($upper)
+                            {
+                                $arrChar[] = strtoupper($method{$i});
+                                $upper = false;
+                            }else{
+                                $arrChar[] = $method{$i};
+                            }
+                        }
+
+                    }
+
+                    $method_name = 'set'.implode('',$arrChar);
+                    //var_dump($method_name);
+
+
+                    if(count($returnArray) ==1)
+                    {
+                        $objects[$objectCounter]->$method_name(reset($returnArray));
+                    }
+                    if(count($returnArray) >=2)
+                    {
+                        $objects[$objectCounter]->$method_name($returnArray);
+
+                    }
                 }
 
             }
-            var_dump($word);
+
+
             $l++;
         }
-        //var_dump($matches);
+
+        return $objects;
         //print($file);
     }
     /**
