@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jorisros/nginxparser.png?branch=master)](https://travis-ci.org/jorisros/nginxparser)
 NginxParser
 ===========
 
@@ -77,6 +78,4 @@ foreach($objects as $object)
 }
 
 ```
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jorisros/nginxparser/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
