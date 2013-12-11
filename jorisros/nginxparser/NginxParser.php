@@ -79,6 +79,8 @@ $l = 0;
                     case '}':
                         $end_method = true;
                     break;
+                    case '#':
+                        $i = strlen($line);
                     case ';':
                     break;
                     default:
