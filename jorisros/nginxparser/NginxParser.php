@@ -227,27 +227,31 @@ $l = 0;
 
         foreach($this->arrValues as $method=>$value)
         {
+            $arrLine = array();
             switch($value)
             {
                 case is_object($value):
                     $value->setParent($this);
-                    $file .= $first."\t".$value."\n";
+                    $line = $first."\t".$value."\n";
+                    $arrLine[md5($line)] = $line;
                 break;
                 case is_array($value):
-                   foreach($value as $item){
+                    foreach($value as $item){
                        if(is_array($item))
                        {
-                           $file .= $first."\t".$method."\t\t".implode(' ',$item).";\n";
+                           $line = $first."\t".$method."\t\t".implode(' ',$item).";\n";
                        }else{
-                           $file .= $first."\t".$method."\t\t".implode(' ',$value).";\n";
+                           $line = $first."\t".$method."\t\t".implode(' ',$value).";\n";
                        }
-                   }
+                        $arrLine[md5($line)] = $line;
+                    }
                 break;
                 default:
-                    $file .= $first . "\t" . $method . "\t\t" . $value . ";\n";
-
+                    $line = $first . "\t" . $method . "\t\t" . $value . ";\n";
+                    $arrLine[md5($line)] = $line;
                 break;
             }
+            $file .= implode('', $arrLine);
         }
         $file .= $first."}\n";
 
