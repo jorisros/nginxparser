@@ -234,10 +234,18 @@ $l = 0;
                     $file .= $first."\t".$value."\n";
                 break;
                 case is_array($value):
-                    $file .= $first."\t".$method."\t\t".implode(' ',$value).";\n";
+                   foreach($value as $item){
+                       if(is_array($item))
+                       {
+                           $file .= $first."\t".$method."\t\t".implode(' ',$item).";\n";
+                       }else{
+                           $file .= $first."\t".$method."\t\t".implode(' ',$value).";\n";
+                       }
+                   }
                 break;
                 default:
-                    $file .= $first."\t".$method."\t\t".$value.";\n";
+                    $file .= $first . "\t" . $method . "\t\t" . $value . ";\n";
+
                 break;
             }
         }
@@ -277,7 +285,7 @@ $l = 0;
      */
     public function setProxySetHeader($header, $variable)
     {
-        return $this->arrValues['proxy_set_header'] = array($header,$variable);
+        return $this->arrValues['proxy_set_header'][] = array($header,$variable);
     }
 
     /**
