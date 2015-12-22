@@ -269,6 +269,18 @@ $l = 0;
     }
 
     /**
+     * Override magic __call function
+     *
+     * @param $header
+     * @param $variable
+     * @return array
+     */
+    public function setProxySetHeader($header, $variable)
+    {
+        return $this->arrValues['proxy_set_header'] = array($header,$variable);
+    }
+
+    /**
      * Magic function for dynamicly generating getters and setters
      *
      * @param $method
