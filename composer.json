@@ -1,0 +1,14 @@
+{
+    "name": "jorisros/nginxparser",
+    "description": "A class for parsing nginx config files in PHP",
+    "require": {
+        "php": ">=5.3.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris Ros",
+            "email": "joris.ros@gmail.com"
+        }
+    ]
+}
