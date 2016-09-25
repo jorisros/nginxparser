@@ -8,6 +8,13 @@ Requirements
 * PHP >= 5.3
 * Nginx installed (for the validate function)
 
+Composer
+--------
+Use composer to to add the classes to your project
+```bash
+composer require jorisros/nginxparser
+```
+
 Examples
 --------
 Examples to use the class
@@ -17,10 +24,10 @@ Simple config file
 ```php
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 use jorisros\nginxparser\NginxParser;
 use jorisros\nginxparser\NginxElement;
-
-require_once 'jorisros/nginxparser/NginxParser.php';
 
 $config = new NginxParser('server');
 
@@ -62,10 +69,10 @@ Read existing config file
 ```
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 use jorisros\nginxparser\NginxParser;
 use jorisros\nginxparser\NginxElement;
-
-require_once 'jorisros/nginxparser/NginxParser.php';
 
 $d = new NginxParser();
 $objects = $d->readFromFile('Resources/nginx-config/nginx.conf');
