@@ -2,8 +2,8 @@
     "name": "jorisros/nginxparser",
     "description": "A class for parsing nginx config files in PHP",
     "require": {
-        "php": ">=5.3.1",
-        "phpunit/phpunit": "^4.8"
+        "php": "^7.1",
+        "phpunit/phpunit": "^7.4"
     },
     "license": "MIT",
     "autoload": {
