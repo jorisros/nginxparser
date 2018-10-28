@@ -280,47 +280,14 @@ $l = 0;
     {
         if(substr($method, 0, 3 ) === 'get')
         {
-            $arrChar = array();
-            for($i=3; $i<strlen($method); $i++)
-            {
-                if($i === 3)
-                {
-                    $method{$i} = strtolower($method{$i});
-                }
-                if(ctype_upper($method{$i}))
-                {
-                    $arrChar[] = '_';
-                    $arrChar[] = strtolower($method{$i});
-                }else{
-                    $arrChar[] = $method{$i};
-                }
-
-            }
-
-            $method_name = implode('',$arrChar);
+            $method_name = $this->convertMethod($method);
 
             return $this->arrValues[$method_name];
         }
 
         if(substr($method, 0, 3 ) === 'set')
         {
-            $arrChar = array();
-            for($i=3; $i<strlen($method); $i++)
-            {
-                if($i === 3)
-                {
-                    $method{$i} = strtolower($method{$i});
-                }
-                if(ctype_upper($method{$i}))
-                {
-                    $arrChar[] = '_';
-                    $arrChar[] = strtolower($method{$i});
-                }else{
-                    $arrChar[] = $method{$i};
-                }
-
-            }
-            $method_name = implode('',$arrChar);
+            $method_name = $this->convertMethod($method);
 
             $value = reset($value);
 
@@ -331,6 +298,35 @@ $l = 0;
         }
 
         return $this;
+    }
+
+    /**
+     * Loops through the defined methods
+     *
+     * @param $method
+     * @return string
+     */
+    private function convertMethod($method): string
+    {
+        $arrChar = [];
+
+        for($i=3; $i<strlen($method); $i++)
+        {
+            if($i === 3)
+            {
+                $method{$i} = strtolower($method{$i});
+            }
+            if(ctype_upper($method{$i}))
+            {
+                $arrChar[] = '_';
+                $arrChar[] = strtolower($method{$i});
+            }else{
+                $arrChar[] = $method{$i};
+            }
+
+        }
+
+        return implode('', $arrChar);
     }
 
 }
