@@ -4,7 +4,7 @@ use jorisros\nginxparser\NginxParser;
 
 require_once "jorisros/nginxparser/NginxParser.php";
 
-class NginxparserTest extends PHPUnit_Framework_TestCase
+class NginxparserTest extends \PHPUnit\Framework\TestCase
 {
     /** @var NginxParser */
     protected $parser;
