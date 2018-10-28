@@ -210,53 +210,30 @@ $l = 0;
      */
     public function build()
     {
-        $first = null;
+        $f = new NginxBuilder($this);
 
-        if(is_object($this->parent))
-        {
-            $first = "\t";
-        }
+        return $f->build();
+    }
 
-        $file = "\n".$first.$this->identity;
-
-        if($this->regex)
-        {
-            $file .= " ".$this->regex;
-        }
-        $file .= " {\n";
-
-        foreach($this->arrValues as $method=>$value)
-        {
-            $arrLine = array();
-            switch($value)
-            {
-                case is_object($value):
-                    $value->setParent($this);
-                    $line = $first."\t".$value."\n";
-                    $arrLine[md5($line)] = $line;
-                break;
-                case is_array($value):
-                    foreach($value as $item){
-                       if(is_array($item))
-                       {
-                           $line = $first."\t".$method."\t\t".implode(' ',$item).";\n";
-                       }else{
-                           $line = $first."\t".$method."\t\t".implode(' ',$value).";\n";
-                       }
-                        $arrLine[md5($line)] = $line;
-                    }
-                break;
-                default:
-                    $line = $first . "\t" . $method . "\t\t" . $value . ";\n";
-                    $arrLine[md5($line)] = $line;
-                break;
-            }
-            $file .= implode('', $arrLine);
-        }
-        $file .= $first."}\n";
+    public function getParent()
+    {
+        return $this->parent;
+    }
 
 
-        return $file;
+    public function getIdentity()
+    {
+        return $this->identity;
+    }
+
+    public function getValues()
+    {
+        return $this->arrValues;
+    }
+
+    public function getRegex()
+    {
+        return $this->regex;
     }
 
     /**
@@ -345,7 +322,12 @@ $l = 0;
             }
             $method_name = implode('',$arrChar);
 
-            $this->arrValues[$method_name] = reset($value);
+            $value = reset($value);
+
+            if (is_object($value)) {
+                $this->parent = $value;
+            }
+            $this->arrValues[$method_name] = $value;
         }
 
         return $this;
