@@ -278,15 +278,13 @@ $l = 0;
      */
     public function __call($method, $value)
     {
-        if(substr($method, 0, 3 ) === 'get')
-        {
+        if (substr($method, 0, 3) === 'get') {
             $method_name = $this->convertMethod($method);
 
             return $this->arrValues[$method_name];
         }
 
-        if(substr($method, 0, 3 ) === 'set')
-        {
+        if (substr($method, 0, 3) === 'set') {
             $method_name = $this->convertMethod($method);
 
             $value = reset($value);
@@ -310,17 +308,14 @@ $l = 0;
     {
         $arrChar = [];
 
-        for($i=3; $i<strlen($method); $i++)
-        {
-            if($i === 3)
-            {
+        for ($i = 3; $i < strlen($method); $i++) {
+            if ($i === 3) {
                 $method{$i} = strtolower($method{$i});
             }
-            if(ctype_upper($method{$i}))
-            {
+            if (ctype_upper($method{$i})) {
                 $arrChar[] = '_';
                 $arrChar[] = strtolower($method{$i});
-            }else{
+            } else {
                 $arrChar[] = $method{$i};
             }
 
