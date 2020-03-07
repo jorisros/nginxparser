@@ -7,7 +7,9 @@
     },
     "license": "MIT",
     "autoload": {
-        "classmap": ["jorisros/nginxparser/"]
+        "psr-4": {
+            "JorisRos\\NginxParser\\": "src/"
+        }
     },
     "authors": [
         {

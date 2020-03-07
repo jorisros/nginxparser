@@ -1,12 +1,11 @@
 <?php
 
 
-namespace jorisros\nginxparser;
+namespace jorisros\nginxparser\tests;
 
-use jorisros\nginxparse;
 
-require_once "jorisros/nginxparser/NginxParser.php";
-require_once "jorisros/nginxparser/NginxBuilder.php";
+use JorisRos\NginxParser\NginxBuilder;
+use JorisRos\NginxParser\NginxParser;
 
 class NginxBuilderTest extends  \PHPUnit\Framework\TestCase
 {

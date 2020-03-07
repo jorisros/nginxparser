@@ -1,6 +1,6 @@
 <?php
 
-namespace jorisros\nginxparser;
+namespace JorisRos\NginxParser;
 
 class NginxElement
 {

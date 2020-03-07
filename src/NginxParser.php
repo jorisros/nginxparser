@@ -1,15 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jorisros
- * Date: 08/12/13
- * Time: 15:37
- */
 
-namespace jorisros\nginxparser;
-
-require_once 'NginxElement.php';
-
+namespace JorisRos\NginxParser;
 
 class NginxParser {
 
