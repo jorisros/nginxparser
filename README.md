@@ -26,8 +26,8 @@ Simple config file
 
 require __DIR__ . '/vendor/autoload.php';
 
-use jorisros\nginxparser\NginxParser;
-use jorisros\nginxparser\NginxElement;
+use JorisRos\NginxParser\NginxParser;
+use JorisRos\NginxParser\NginxElement;
 
 $config = new NginxParser('server');
 
@@ -71,8 +71,8 @@ Read existing config file
 
 require __DIR__ . '/vendor/autoload.php';
 
-use jorisros\nginxparser\NginxParser;
-use jorisros\nginxparser\NginxElement;
+use JorisRos\NginxParser\NginxParser;
+use JorisRos\NginxParser\NginxElement;
 
 $d = new NginxParser();
 $objects = $d->readFromFile('Resources/nginx-config/nginx.conf');
