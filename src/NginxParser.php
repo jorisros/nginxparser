@@ -57,7 +57,7 @@ $l = 0;
             for($i=0; $i<strlen($line); $i++)
             {
                 //var_dump($line{$i});
-                switch($line{$i})
+                switch($line[$i])
                 {
                     case ' ':
                         //$word[$l] = strpos($line, $lastChar, $i);
@@ -75,7 +75,7 @@ $l = 0;
                     case ';':
                     break;
                     default:
-                        $str .= $line{$i};
+                        $str .= $line[$i];
                     break;
                 }
                 if($space)
@@ -142,7 +142,7 @@ $l = 0;
                                 $arrChar[] = strtoupper($method{$i});
                                 $upper = false;
                             }else{
-                                $arrChar[] = $method{$i};
+                                $arrChar[] = $method[$i];
                             }
                         }
 
