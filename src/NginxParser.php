@@ -129,17 +129,17 @@ $l = 0;
                     {
                         if($i === 0)
                         {
-                            $method{$i} = strtoupper($method{$i});
+                            $method[$i] = strtoupper($method[$i]);
                         }
                         if($method{$i} === '_')
                         {
                            // $i++;
                             $upper = true;
-                            //$arrChar[] = strtoupper($method{$i});
+                            //$arrChar[] = strtoupper($method[$i]);
                         }else{
                             if($upper)
                             {
-                                $arrChar[] = strtoupper($method{$i});
+                                $arrChar[] = strtoupper($method[$i]);
                                 $upper = false;
                             }else{
                                 $arrChar[] = $method[$i];
@@ -305,14 +305,14 @@ $l = 0;
         {
             if($i === 3)
             {
-                $method{$i} = strtolower($method{$i});
+                $method{$i} = strtolower($method[$i]);
             }
-            if(ctype_upper($method{$i}))
+            if(ctype_upper($method[$i]))
             {
                 $arrChar[] = '_';
-                $arrChar[] = strtolower($method{$i});
+                $arrChar[] = strtolower($method[$i]);
             }else{
-                $arrChar[] = $method{$i};
+                $arrChar[] = $method[$i];
             }
 
         }
