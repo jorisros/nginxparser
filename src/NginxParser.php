@@ -131,7 +131,7 @@ $l = 0;
                         {
                             $method[$i] = strtoupper($method[$i]);
                         }
-                        if($method{$i} === '_')
+                        if($method[$i] === '_')
                         {
                            // $i++;
                             $upper = true;
