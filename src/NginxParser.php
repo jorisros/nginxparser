@@ -305,7 +305,7 @@ $l = 0;
         {
             if($i === 3)
             {
-                $method{$i} = strtolower($method[$i]);
+                $method[$i] = strtolower($method[$i]);
             }
             if(ctype_upper($method[$i]))
             {
