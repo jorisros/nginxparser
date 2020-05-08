@@ -189,9 +189,9 @@ $l = 0;
      *
      * @param $obj
      */
-    protected function setParent($obj)
+    protected function setParent($object)
     {
-        $this->parent = $obj;
+        $this->parent = $object;
     }
 
     /**
@@ -201,9 +201,9 @@ $l = 0;
      */
     public function build()
     {
-        $f = new NginxBuilder($this);
+        $nginxBuilder = new NginxBuilder($this);
 
-        return $f->build();
+        return $nginxBuilder->build();
     }
 
     public function getParent()
