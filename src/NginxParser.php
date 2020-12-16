@@ -13,8 +13,8 @@ class NginxParser {
     /** @var null regular expression of the section */
     protected $regex = null;
 
-    /** @var null The depth of a object */
-    protected $parent = null;
+    /** @var NginxParser|null The depth of a object */
+    protected $parent;
 
     /**
      * Constructor of the parser
@@ -26,6 +26,7 @@ class NginxParser {
     {
         $this->identity = $identity;
         $this->regex = $regex;
+        $this->parent = null;
 
         return $this;
     }
@@ -187,9 +188,9 @@ $l = 0;
     /**
      * Set a parent object
      *
-     * @param $obj
+     * @param NginxParser $object
      */
-    protected function setParent($object)
+    protected function setParent($object): void
     {
         $this->parent = $object;
     }
@@ -206,6 +207,9 @@ $l = 0;
         return $nginxBuilder->build();
     }
 
+    /**
+     * @return NginxParser|null
+     */
     public function getParent()
     {
         return $this->parent;
@@ -263,8 +267,8 @@ $l = 0;
     /**
      * Magic function for dynamicly generating getters and setters
      *
-     * @param $method
-     * @param $value
+     * @param string $method
+     * @param mixed $value
      * @return $this
      */
     public function __call($method, $value)
@@ -280,6 +284,7 @@ $l = 0;
         {
             $method_name = $this->convertMethod($method);
 
+            /** @var NginxParser $value */
             $value = reset($value);
 
             if (is_object($value)) {
