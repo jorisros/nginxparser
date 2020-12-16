@@ -16,5 +16,8 @@
             "name": "Joris Ros",
             "email": "joris.ros@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "vimeo/psalm": "^4.3"
+    }
 }
