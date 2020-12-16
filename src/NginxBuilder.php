@@ -14,8 +14,14 @@ class NginxBuilder
      */
     private $indent = '';
 
+    /**
+     * @var string
+     */
     private $content = '';
 
+    /**
+     * NginxBuilder constructor.
+     */
     public function __construct(NginxParser $parser)
     {
         $this->parser = $parser;
@@ -68,9 +74,9 @@ class NginxBuilder
     /**
      * Choose the type
      *
-     * @param $method
-     * @param $value
-     * @return string
+     * @param string $method
+     * @param mixed $value
+     * @return mixed
      */
     private function chooseType($method, $value)
     {
@@ -90,7 +96,7 @@ class NginxBuilder
     /**
      * Converts a object to a string
      *
-     * @param $value
+     * @param mixed $value
      * @return string
      */
     private function chooseTypeObject($value): string
@@ -104,11 +110,14 @@ class NginxBuilder
     /**
      * Converts the array to a string
      *
-     * @param $method
-     * @param $array
-     * @return string
+     * @param string $method
+     * @param mixed $array
+     *
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
      */
-    private function chooseTypeArray($method, $array)
+    private function chooseTypeArray($method, $array): array
     {
         $lines = [];
 
@@ -139,7 +148,7 @@ class NginxBuilder
     /**
      * Add the content
      *
-     * @param $content
+     * @param string $content
      */
     private function addContent($content): void
     {
@@ -148,6 +157,7 @@ class NginxBuilder
 
     /**
      * Sets the ident when it is a parent
+     * @param string $value
      */
     public function setIndent($value = ""): void
     {
@@ -164,6 +174,9 @@ class NginxBuilder
         return "\n" . $this->indent . $this->parser->getIdentity();
     }
 
+    /**
+     * @return string
+     */
     private function setRegex()
     {
         if ($this->parser->getRegex()){

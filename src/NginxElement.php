@@ -7,7 +7,7 @@ class NginxElement
     /**
      * use
      *
-     * @param $integer
+     * @param mixed $integer
      * @return int
      */
     public static function integer($integer)
@@ -15,6 +15,10 @@ class NginxElement
         return (int) $integer;
     }
 
+    /**
+     * @param string $hostname
+     * @return string
+     */
     public static function hostname($hostname)
     {
         return $hostname;
