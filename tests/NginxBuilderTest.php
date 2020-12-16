@@ -9,16 +9,6 @@ use JorisRos\NginxParser\NginxParser;
 
 class NginxBuilderTest extends  \PHPUnit\Framework\TestCase
 {
-    protected function setUp()
-    {
-        //$this->parser = new NginxParser();
-    }
-
-    protected function tearDown()
-    {
-        //unset($this->parser);
-    }
-
     public function testSimple() {
 
         $location = new NginxParser('location','/');

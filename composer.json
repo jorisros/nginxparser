@@ -3,7 +3,7 @@
     "description": "A class for parsing nginx config files in PHP",
     "require": {
         "php": "^7.1|^8.0",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^8.0"
     },
     "license": "MIT",
     "autoload": {
