@@ -9,10 +9,10 @@ on:
 jobs:
   run:
     runs-on: ${{ matrix.operating-system }}
-    strategy:      
+    strategy:
       matrix:
         operating-system: [Ubuntu-20.04]
-        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.2', '7.3', '7.4','8.0']
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
     - name: Checkout
@@ -28,7 +28,6 @@ jobs:
 
     - name: Composer install
       run: composer install --optimize-autoloader --prefer-dist
-    
+
     - name: PHPUnit tests
       run: ./vendor/bin/phpunit tests
-    

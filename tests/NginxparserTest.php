@@ -10,17 +10,7 @@ class NginxparserTest extends \PHPUnit\Framework\TestCase
 {
     /** @var NginxParser */
     protected $parser;
-
-    protected function setUp()
-    {
-        //$this->parser = new NginxParser();
-    }
-
-    protected function tearDown()
-    {
-        //unset($this->parser);
-    }
-
+    
     public function testSimple() {
         $expected = <<<EOF
 
@@ -42,7 +32,7 @@ server {
 	listen		80;
 	server_name		localhost local serveralias;
 	access_log		/var/log/nginx/log/host.access.log;
-	
+
 	location / {
 		root		/usr/share/nginx/html;
 		index		index.html index.htm;
