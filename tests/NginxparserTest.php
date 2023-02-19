@@ -1,8 +1,5 @@
 <?php
 
-namespace jorisros\nginxparser\tests;
-
-
 use JorisRos\NginxParser\NginxBuilder;
 use JorisRos\NginxParser\NginxParser;
 

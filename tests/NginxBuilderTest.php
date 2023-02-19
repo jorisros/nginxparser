@@ -1,13 +1,10 @@
 <?php
 
-
-namespace jorisros\nginxparser\tests;
-
-
 use JorisRos\NginxParser\NginxBuilder;
 use JorisRos\NginxParser\NginxParser;
+use PHPUnit\Framework\TestCase;
 
-class NginxBuilderTest extends  \PHPUnit\Framework\TestCase
+class NginxBuilderTest extends TestCase
 {
     protected function setUp(): void
     {
