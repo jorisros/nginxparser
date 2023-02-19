@@ -11,12 +11,12 @@ class NginxparserTest extends \PHPUnit\Framework\TestCase
     /** @var NginxParser */
     protected $parser;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         //$this->parser = new NginxParser();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         //unset($this->parser);
     }

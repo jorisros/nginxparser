@@ -5,7 +5,7 @@ NginxParser
 Read and create Nginx config files in php
 Requirements
 ------------
-* PHP >= 7.1
+* PHP >= 7.2
 * Nginx installed (for the validate function)
 
 Composer
@@ -13,6 +13,13 @@ Composer
 Use composer to to add the classes to your project
 ```bash
 composer require jorisros/nginxparser
+```
+
+Run tests
+--------
+Run in the main directory the following command
+```bash
+./vendor/bin/phpunit tests
 ```
 
 Examples
