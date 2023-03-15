@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install required packages
+        run: |
+          sudo apt update
+          sudo apt install -y --no-upgrade nginx
+          whereis nginx
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
