@@ -5,7 +5,7 @@ NginxParser
 Read and create Nginx config files in php
 Requirements
 ------------
-* PHP >= 7.2
+* PHP >= 7.4
 * Nginx installed (for the validate function)
 
 Composer
