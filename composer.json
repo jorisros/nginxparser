@@ -1,6 +1,7 @@
 {
     "name": "jorisros/nginxparser",
     "description": "A class for parsing nginx config files in PHP",
+    "type": "library",
     "require": {
         "php": ">=7.2"
     },

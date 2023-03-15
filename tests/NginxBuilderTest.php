@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/../vendor/autoload.php');
+
 use JorisRos\NginxParser\NginxBuilder;
 use JorisRos\NginxParser\NginxParser;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +20,7 @@ class NginxBuilderTest extends TestCase
 
     public function testSimple() {
 
-        $location = new NginxParser('location','/');
+        $location = new JorisRos\NginxParser\NginxParser('location','/');
         $location->setRoot('/usr/share/nginx/html')
             ->setIndex(array('index.html', 'index.htm'));
         $server = new NginxParser('server');
